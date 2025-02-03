@@ -1,0 +1,56 @@
+@use "../../styles/base/colors" as colors;
+@use "../../styles/base/variables" as variables;
+@use "../../styles/utils/mixins" as mixins;
+
+@mixin hardware-acceleration {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  animation: appear 1s ease forwards;
+  will-change: opacity, transform;
+  @include hardware-acceleration();
+
+  font-size: 5rem;
+  font-weight: 900;
+  font-family: "Space Mono";
+  line-height: 1.2;
+}
+
+.line {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: colors.$background;
+    z-index: -1;
+    @include hardware-acceleration();
+  }
+}
+
+@include mixins.mobile-styles {
+  .title {
+    font-size: 4rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}

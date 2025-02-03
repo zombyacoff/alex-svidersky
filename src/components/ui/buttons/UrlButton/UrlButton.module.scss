@@ -1,13 +1,16 @@
+@use "../../../../styles/base/colors" as colors;
+@use "../../../../styles/utils/mixins" as mixins;
+
 .button {
   a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--color-secondary);
-    transition: color 0.3s ease-in-out;
+    color: colors.$secondary;
+    @include mixins.transition(color);
 
     &:hover {
-      color: var(--color-primary);
+      color: colors.$primary;
     }
 
     span {

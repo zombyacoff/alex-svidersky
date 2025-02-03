@@ -4,21 +4,21 @@ import "@/styles/globals.scss";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+export const metadata: Metadata = {
+  title: "AlexSvidersky",
+};
+
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "AlexSvidersky",
-};
-
-export default function Layout({
-  children,
-}: Readonly<{
+interface LayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function Layout({ children }: LayoutProps) {
   return (
     <html className={`${inter.variable}`}>
       <body>

@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UrlButton from "@/components/ui/buttons/UrlButton";
-import { profileUrls } from "@/constants";
+import { PROFILE_URLS, NAV_LINKS } from "@/constants";
 import styles from "./Header.module.scss";
 
 interface NavLink {
@@ -12,14 +12,8 @@ interface NavLink {
   name: string;
 }
 
-const NAV_LINKS: NavLink[] = [
-  { href: "/", name: "home" },
-  { href: "/manifest", name: "manifest" },
-];
-
 const NavLinkComponent = ({ href, name }: NavLink) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive = usePathname() === href;
 
   return (
     <Link
@@ -48,12 +42,12 @@ const Header = () => {
           </div>
           <div className={styles.socialLinks}>
             <UrlButton
-              url={profileUrls.steam}
+              url={PROFILE_URLS.steam}
               text="steam"
               arrowSize={arrowSize}
             />
             <UrlButton
-              url={profileUrls.github}
+              url={PROFILE_URLS.github}
               text="github"
               arrowSize={arrowSize}
             />

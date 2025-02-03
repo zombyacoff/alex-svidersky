@@ -19,20 +19,41 @@ declare module "three/examples/jsm/effects/AsciiEffect" {
   export default AsciiEffect;
 }
 
-// declare module "three/examples/jsm/controls/TrackballControls" {
-//   import { Camera } from "three";
-//   import { EventDispatcher } from "three/src/core/EventDispatcher";
+declare module "three/examples/jsm/loaders/FontLoader" {
+  import { Loader, LoadingManager, Font } from "three";
 
-//   export class TrackballControls extends EventDispatcher {
-//     constructor(object: Camera, domElement?: HTMLElement);
-//     rotateSpeed: number;
-//     zoomSpeed: number;
-//     panSpeed: number;
-//     noZoom: boolean;
-//     noPan: boolean;
-//     static keys: any[];
-//     update(): void;
-//     reset(): void;
-//     dispose(): void;
-//   }
-// }
+  export class FontLoader extends Loader {
+    constructor(manager?: LoadingManager);
+    load(
+      url: string,
+      onLoad: (font: Font) => void,
+      onProgress?: (event: ProgressEvent) => void,
+      onError?: (event: ErrorEvent) => void
+    ): void;
+    parse(json: any): Font;
+  }
+
+  export default FontLoader;
+}
+
+declare module "three/examples/jsm/geometries/TextGeometry" {
+  import { BufferGeometry, Font } from "three";
+
+  export interface TextGeometryParameters {
+    font: Font;
+    size?: number;
+    height?: number;
+    curveSegments?: number;
+    bevelEnabled?: boolean;
+    bevelThickness?: number;
+    bevelSize?: number;
+    bevelOffset?: number;
+    bevelSegments?: number;
+  }
+
+  export class TextGeometry extends BufferGeometry {
+    constructor(text: string, parameters: TextGeometryParameters);
+  }
+
+  export default TextGeometry;
+}

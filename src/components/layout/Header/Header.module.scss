@@ -1,13 +1,6 @@
-$color-active: var(--color-primary);
-$color-inactive: var(--color-secondary);
-$header-height: 5rem;
-$header-height-mobile: 4rem;
-$padding-horizontal: 2.5rem;
-$padding-horizontal-mobile: 1.5rem;
-
-@mixin transition($property) {
-  transition: #{$property} 0.3s ease-in-out;
-}
+@use "../../../styles/base/colors" as colors;
+@use "../../../styles/base/variables" as variables;
+@use "../../../styles/utils/mixins" as mixins;
 
 .header {
   position: fixed;
@@ -15,47 +8,46 @@ $padding-horizontal-mobile: 1.5rem;
   left: 0;
   width: 100%;
   z-index: 50;
+  transform: translateY(20px);
 
   .container {
     width: 100%;
 
     .innerContainer {
-      max-width: 1120px;
+      max-width: variables.$main-container-width;
       margin: 0 auto;
-      padding: 0 $padding-horizontal;
+      padding: 0 variables.$padding-horizontal;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: $header-height;
+      height: variables.$header-height;
       background: rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(10px);
-      transform: translateY(20px);
 
       .nav {
         display: flex;
         align-items: center;
-        gap: 1.25rem;
+        gap: variables.$padding-horizontal;
 
         a {
           display: flex;
           align-items: center;
           padding: 0.5rem 0;
-          @include transition(color);
-          color: $color-inactive;
+          @include mixins.transition(color);
+          color: colors.$secondary;
 
           &:hover {
-            color: $color-active;
+            color: colors.$primary;
           }
 
           &.active {
-            color: $color-active;
+            color: colors.$primary;
           }
 
           span {
             font-family: monospace;
-            font-size: 1.5rem;
-            letter-spacing: 0.05em;
-            @include transition(opacity);
+            font-size: 1.33rem;
+            @include mixins.transition(opacity);
           }
         }
       }
@@ -69,17 +61,18 @@ $padding-horizontal-mobile: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
+@include mixins.mobile-styles {
   .header {
+    transform: none;
+
     .container {
       .innerContainer {
         max-width: 100%;
-        padding: 0 $padding-horizontal-mobile;
-        height: $header-height-mobile;
-        transform: none;
+        padding: 0 variables.$padding-horizontal-mobile;
+        height: variables.$header-height-mobile;
 
         .nav {
-          gap: 0.75rem;
+          gap: variables.$padding-horizontal-mobile;
 
           a {
             span {

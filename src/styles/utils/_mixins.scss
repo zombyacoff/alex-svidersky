@@ -1,0 +1,42 @@
+@use "sass:list";
+@use "sass:string";
+
+@mixin transition($properties...) {
+  $transitions: ();
+  @each $prop in $properties {
+    $transition: string.unquote("#{$prop} 0.25s ease-in-out");
+    $transitions: list.append($transitions, $transition, comma);
+  }
+  transition: $transitions;
+}
+
+@mixin font-face(
+  $name,
+  $weight,
+  $file,
+  $exts: ("otf", "ttf", "woff2", "woff")
+) {
+  $src: ();
+
+  @each $ext in $exts {
+    $src: list.append(
+      $src,
+      url("#{$file}.#{$ext}") format("#{$ext}-type"),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: $name;
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+    src: $src;
+  }
+}
+
+@mixin mobile-styles {
+  @media (max-width: 765px) {
+    @content;
+  }
+}

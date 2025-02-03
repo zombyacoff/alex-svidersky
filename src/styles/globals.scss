@@ -1,37 +1,14 @@
 @use "sass:map";
-@use "sass:list";
+
+@use "./base/colors" as colors;
+@use "./base/variables" as variables;
+@use "./utils/mixins" as mixins;
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@mixin transition($properties...) {
-  $transitions: ();
-  @each $prop in $properties {
-    $transitions: list.append($transitions, "#{$prop} 0.3s ease-in-out", comma);
-  }
-  transition: $transitions;
-}
-
-@mixin font-face($name, $weight, $file, $exts: ("ttf", "woff2", "woff")) {
-  $src: ();
-
-  @each $ext in $exts {
-    $src: list.append(
-      $src,
-      url("#{$file}.#{$ext}") format("#{$ext}-type"),
-      comma
-    );
-  }
-
-  @font-face {
-    font-family: $name;
-    font-weight: $weight;
-    font-style: normal;
-    font-display: swap;
-    src: $src;
-  }
-}
 
 $fonts: (
   "mono-medium": (
@@ -49,23 +26,18 @@ $fonts: (
 );
 
 @each $font-key, $font-info in $fonts {
-  @include font-face(
-    "main-mono",
+  @include mixins.font-face(
+    monospace,
     map.get($font-info, weight),
     "/fonts/#{map.get($font-info, file)}"
   );
 }
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --color-primary: #ffffff;
-  --color-secondary: #808080;
-
-  @media (prefers-color-scheme: light) {
-    --background: #ededed;
-    --foreground: #0a0a0a;
-  }
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-display: swap;
+  src: "https://fonts.gstatic.com/s/spacemono/v11/i7dPIFZifjKcF6O0aCF6fe-8.woff2";
 }
 
 html {
@@ -75,25 +47,27 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
-  @include transition(color, background-color);
+  color: colors.$foreground;
+  background-color: colors.$background;
 }
 
-.text-mono {
-  font-family: "main-mono", monospace;
-  font-variant-ligatures: contextual;
-  font-feature-settings: "calt" 1;
+.main-container {
+  position: relative;
+  width: variables.$main-container-width;
+  margin: -20px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
-@media print {
-  :root {
-    --background: #fff;
-    --foreground: #000;
-  }
-
-  body {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+@include mixins.mobile-styles {
+  .main-container {
+    padding: variables.$header-height-mobile
+      variables.$padding-horizontal-mobile 0;
+    margin-top: 0;
+    justify-content: flex-start;
   }
 }
