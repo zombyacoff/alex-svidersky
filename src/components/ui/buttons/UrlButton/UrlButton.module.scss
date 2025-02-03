@@ -1,0 +1,19 @@
+.button {
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-secondary);
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    span {
+      margin-left: 0.3rem;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+  }
+}

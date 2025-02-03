@@ -1,0 +1,99 @@
+@use "sass:map";
+@use "sass:list";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@mixin transition($properties...) {
+  $transitions: ();
+  @each $prop in $properties {
+    $transitions: list.append($transitions, "#{$prop} 0.3s ease-in-out", comma);
+  }
+  transition: $transitions;
+}
+
+@mixin font-face($name, $weight, $file, $exts: ("ttf", "woff2", "woff")) {
+  $src: ();
+
+  @each $ext in $exts {
+    $src: list.append(
+      $src,
+      url("#{$file}.#{$ext}") format("#{$ext}-type"),
+      comma
+    );
+  }
+
+  @font-face {
+    font-family: $name;
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+    src: $src;
+  }
+}
+
+$fonts: (
+  "mono-medium": (
+    weight: 400,
+    file: "mono-medium",
+  ),
+  "mono-demibold": (
+    weight: 700,
+    file: "mono-demibold",
+  ),
+  "mono-bold": (
+    weight: 900,
+    file: "mono-bold",
+  ),
+);
+
+@each $font-key, $font-info in $fonts {
+  @include font-face(
+    "main-mono",
+    map.get($font-info, weight),
+    "/fonts/#{map.get($font-info, file)}"
+  );
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --color-primary: #ffffff;
+  --color-secondary: #808080;
+
+  @media (prefers-color-scheme: light) {
+    --background: #ededed;
+    --foreground: #0a0a0a;
+  }
+}
+
+html {
+  color-scheme: dark light;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  @include transition(color, background-color);
+}
+
+.text-mono {
+  font-family: "main-mono", monospace;
+  font-variant-ligatures: contextual;
+  font-feature-settings: "calt" 1;
+}
+
+@media print {
+  :root {
+    --background: #fff;
+    --foreground: #000;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
