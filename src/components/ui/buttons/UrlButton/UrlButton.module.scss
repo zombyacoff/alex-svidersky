@@ -1,5 +1,5 @@
-@use "../../../../styles/base/colors" as colors;
-@use "../../../../styles/utils/mixins" as mixins;
+@use "base/colors" as colors;
+@use "utils/mixins" as mixins;
 
 .button {
   a {

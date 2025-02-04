@@ -1,8 +1,8 @@
 @use "sass:map";
 
-@use "./base/colors" as colors;
-@use "./base/variables" as variables;
-@use "./utils/mixins" as mixins;
+@use "base/colors" as colors;
+@use "base/variables" as variables;
+@use "utils/mixins" as mixins;
 
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700;900&display=swap");
 
@@ -60,11 +60,10 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   box-sizing: border-box;
-  z-index: 2;
-}
+  z-index: -5;
+  overflow: visible;
 
-@include mixins.mobile-styles {
-  .main-container {
+  @include mixins.mobile {
     padding: variables.$header-height-mobile
       variables.$padding-horizontal-mobile 0;
     margin-top: 0;

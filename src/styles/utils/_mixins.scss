@@ -35,8 +35,13 @@
   }
 }
 
-@mixin mobile-styles {
+@mixin mobile {
   @media (max-width: 765px) {
     @content;
   }
+}
+
+@mixin hardware-acceleration {
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }

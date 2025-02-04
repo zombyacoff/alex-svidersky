@@ -1,11 +1,6 @@
-@use "../../styles/base/colors" as colors;
-@use "../../styles/base/variables" as variables;
-@use "../../styles/utils/mixins" as mixins;
-
-@mixin hardware-acceleration {
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
+@use "base/colors" as colors;
+@use "base/variables" as variables;
+@use "utils/mixins" as mixins;
 
 @keyframes appear {
   0% {
@@ -21,32 +16,36 @@
 .title {
   animation: appear 1s ease forwards;
   will-change: opacity, transform;
-  @include hardware-acceleration();
+  @include mixins.hardware-acceleration();
 
-  font-size: 5rem;
+  color: colors.$primary;
+  font-size: 6rem;
   font-weight: 900;
   font-family: "Space Mono";
   line-height: 1.2;
 }
 
 .line {
-  position: relative;
-  display: inline-block;
+  display: block;
+  position: relative; // Ensures a stacking context to enable backdrop-filter effects
+  isolation: isolate; // Creates a new stacking context for the backdrop filter
+  width: fit-content;
+  /* Apply a dark translucent background */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Enable backdrop blur effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  will-change: backdrop-filter;
+  /* Include internal padding variables correctly via interpolation */
+  padding: 0.05em #{variables.$padding-horizontal};
+  /* Preserve box decoration properties for connected sections */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: colors.$background;
-    z-index: -1;
-    @include hardware-acceleration();
-  }
+  @include mixins.hardware-acceleration();
 }
 
-@include mixins.mobile-styles {
+@include mixins.mobile {
   .title {
     font-size: 4rem;
     overflow-wrap: break-word;

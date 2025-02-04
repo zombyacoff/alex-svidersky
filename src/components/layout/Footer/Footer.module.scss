@@ -1,20 +1,36 @@
-@use "../../../styles/base/colors" as colors;
-@use "../../../styles/utils/mixins" as mixins;
+@use "base/colors" as colors;
+@use "utils/mixins" as mixins;
+
+/* 
+  IMPORTANT: For the footer to always remain at the bottom of the page,
+  ensure that the parent layout container is set up as follows:
+  
+  .layoutWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  And that the main content area uses flex: 1 to take available space.
+*/
 
 .footer {
-  padding: 2rem;
+  width: 100%;
+  padding: 1rem;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: colors.$background;
 
-  @include mixins.mobile-styles {
+  @include mixins.mobile {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
 
   .copy {
-    font-size: 0.75rem;
+    color: colors.$secondary;
+    font-size: 0.875rem;
     line-height: 1.4;
   }
 }
