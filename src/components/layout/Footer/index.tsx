@@ -1,14 +1,18 @@
 import React from "react";
 import styles from "./Footer.module.scss";
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={styles.footer}>
-      <p className={styles.copy}>© {currentYear} MIT Licensed</p>
+    <footer
+      className={styles.footer}
+      role="contentinfo"
+      aria-label="Подвал сайта"
+    >
+      <p className={styles.copy}>
+        <small>© {currentYear} MIT Licensed</small>
+      </p>
     </footer>
   );
 };
-
-export default Footer;

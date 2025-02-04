@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import UrlButton from "@/components/ui/buttons/UrlButton";
-import { PROFILE_URLS, NAV_LINKS } from "@/constants";
+import { UrlButton } from "@/components/ui/buttons/UrlButton";
+import { PROFILE_URLS, NAV_LINKS } from "@/lib/constants";
 import styles from "./Header.module.scss";
 
 interface NavLink {
@@ -27,8 +27,9 @@ const NavLinkComponent = ({ href, name }: NavLink) => {
   );
 };
 
-const Header = () => {
+export const Header: React.FC = () => {
   const arrowSize = 16;
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -57,5 +58,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

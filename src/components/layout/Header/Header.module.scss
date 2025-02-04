@@ -1,6 +1,6 @@
-@use "base/colors" as colors;
-@use "base/variables" as variables;
-@use "utils/mixins" as mixins;
+@use "colors" as colors;
+@use "variables" as variables;
+@use "mixins" as mixins;
 
 .header {
   position: fixed;
@@ -59,10 +59,8 @@
       }
     }
   }
-}
 
-@include mixins.mobile {
-  .header {
+  @include mixins.mobile {
     transform: none;
 
     .container {

@@ -1,14 +1,14 @@
 @use "sass:map";
 
-@use "base/colors" as colors;
-@use "base/variables" as variables;
-@use "utils/mixins" as mixins;
-
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700;900&display=swap");
+@use "colors" as colors;
+@use "variables" as variables;
+@use "mixins" as mixins;
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700;900&display=swap");
 
 $fonts: (
   "mono-medium": (
@@ -34,10 +34,10 @@ $fonts: (
 }
 
 @font-face {
-  font-family: "Space Mono";
+  font-family: "Roboto Mono";
   font-style: normal;
   font-display: swap;
-  src: "https://fonts.gstatic.com/s/spacemono/v11/i7dPIFZifjKcF6O0aCF6fe-8.woff2";
+  src: "https://fonts.gstatic.com/s/robotomono/v7/L0x5DF4xlVMF-BfR8bXMIjD8.woff2";
 }
 
 html {

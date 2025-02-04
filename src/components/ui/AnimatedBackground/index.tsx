@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import styles from "./Background.module.scss";
+import styles from "./AnimatedBackground.module.scss";
 import * as THREE from "three";
 import { AsciiEffect } from "three/examples/jsm/effects/AsciiEffect";
 
-const Background: React.FC = () => {
+export const Background: React.FC = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
   let effectVisible = true;
   const MIN_WIDTH = 100;
@@ -34,12 +34,11 @@ const Background: React.FC = () => {
 
     effect.domElement.style.color = "white";
     effect.domElement.style.backgroundColor = "black";
-    effect.domElement.style.position = "absolute";
+    effect.domElement.style.position = "fixed"; // Changed to fixed
     effect.domElement.style.top = "0";
-    effect.domElement.style.left = "50%";
-    effect.domElement.style.transform = "translateX(-50%)";
-    effect.domElement.style.width = "100vw";
-    effect.domElement.style.height = "100%";
+    effect.domElement.style.left = "0"; // Changed to cover the entire viewport
+    effect.domElement.style.width = "100vw"; // Full viewport width
+    effect.domElement.style.height = "100vh"; // Full viewport height
     effect.domElement.style.pointerEvents = "none";
     effect.domElement.style.zIndex = "-1";
 
@@ -126,5 +125,3 @@ const Background: React.FC = () => {
 
   return <div ref={mountRef} className={styles.background} />;
 };
-
-export default Background;

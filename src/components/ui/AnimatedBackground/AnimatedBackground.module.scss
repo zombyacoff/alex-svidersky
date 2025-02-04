@@ -8,13 +8,12 @@
 }
 
 .background {
-  position: absolute;
+  position: fixed; /* Use fixed to cover the entire viewport */
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
   z-index: -50;
 
-  opacity: 0;
   animation: fadeIn 3s forwards;
 }
