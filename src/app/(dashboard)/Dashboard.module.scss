@@ -18,7 +18,6 @@
   will-change: opacity, transform;
   @include mixins.hardware-acceleration();
 
-  color: colors.$primary;
   font-size: 4rem;
   font-weight: 700;
   font-family: "Roboto Mono";

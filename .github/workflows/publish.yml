@@ -1,8 +1,5 @@
 name: publish-to-github-pages
-on:
-  push:
-    branches:
-    - master
+on: push
 
 permissions:
   contents: read

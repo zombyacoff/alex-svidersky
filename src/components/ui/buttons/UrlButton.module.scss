@@ -7,10 +7,18 @@
     align-items: center;
     text-decoration: none;
     color: colors.$secondary;
-    @include mixins.transition(color);
+    @include mixins.transition(color, transform);
 
     &:hover {
       color: colors.$primary;
+
+      svg {
+        transform: translate(3px, -3px);
+      }
+    }
+
+    svg {
+      @include mixins.transition(transform);
     }
 
     span {
