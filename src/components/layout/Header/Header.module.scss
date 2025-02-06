@@ -8,7 +8,7 @@
   left: 0;
   width: 100%;
   z-index: 50;
-  transform: translateY(20px);
+  transform: translateY(variables.$header-offset);
 
   .container {
     width: 100%;
@@ -21,8 +21,7 @@
       justify-content: space-between;
       align-items: center;
       height: variables.$header-height;
-      background: rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(10px);
+      @include mixins.background-blur();
 
       .nav {
         display: flex;

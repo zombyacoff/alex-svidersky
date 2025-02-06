@@ -3,7 +3,6 @@ import matter from "gray-matter";
 import path from "path";
 import { postsDirectory } from "./constants";
 
-// Define the PostMeta interface if it's not already defined elsewhere
 interface PostMeta {
   slug: string;
   title: string;
@@ -32,7 +31,6 @@ export async function getAllPosts(): Promise<PostMeta[]> {
     );
 
     console.log("Final posts:", JSON.stringify(posts, null, 2));
-    // Sort posts by date in descending order
     posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 
     return posts;

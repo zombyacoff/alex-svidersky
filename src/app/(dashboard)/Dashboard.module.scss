@@ -14,7 +14,8 @@
 }
 
 .title {
-  animation: appear 1s ease forwards;
+  opacity: 0;
+  animation: appear 1s ease both;
   will-change: opacity, transform;
   @include mixins.hardware-acceleration();
 
@@ -33,12 +34,7 @@
 
 .line {
   display: block;
-  position: relative;
-  isolation: isolate;
   width: fit-content;
   background-color: colors.$background;
   padding: 0.05em #{variables.$padding-horizontal};
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  @include mixins.hardware-acceleration();
 }

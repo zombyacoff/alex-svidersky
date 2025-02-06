@@ -1,0 +1,83 @@
+@use "sass:color";
+
+@use "colors" as colors;
+@use "variables" as variables;
+@use "mixins" as mixins;
+
+.headingBase {
+  font-family: monospace;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.anchorIcon {
+  position: absolute;
+  left: -1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: colors.$max-secondary;
+}
+
+.link {
+  color: colors.$highlight;
+  position: relative;
+  text-decoration: none;
+  @include mixins.transition(all);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 0;
+    background-color: colors.$highlight;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.codeBlock {
+  background-color: color.adjust(colors.$background, $lightness: 4%);
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
+.inlineCode {
+  background-color: color.adjust(colors.$background, $lightness: 4%);
+  padding: 0.2rem 0.4rem;
+  font-family: monospace;
+}
+
+.quote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  color: colors.$secondary;
+  background-color: color.adjust(colors.$background, $lightness: 4%);
+  border-left: 4px solid colors.$max-secondary;
+  position: relative;
+}
+
+:global(hr) {
+  border: none;
+  border-top: 1px solid colors.$max-secondary;
+  margin: 1.5rem 0;
+}
+
+:global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+:global(th),
+:global(td) {
+  border: 1px solid colors.$max-secondary;
+  padding: 0.75rem;
+  text-align: left;
+}

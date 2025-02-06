@@ -5,34 +5,21 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { postsDirectory } from "@/lib/constants";
 import { getAllPosts } from "@/lib/mdx";
 import remarkGfm from "remark-gfm";
+import React from "react";
+import { MDXComponents } from "@/components/MDX/MDXComponents";
+import styles from "./post.module.scss";
+import { notFound } from "next/navigation";
 
+type PageParams = { slug: string };
 type PageProps = {
-  params: { slug: string };
+  params: Promise<PageParams> | PageParams;
 };
 
-const MDXComponents = {
-  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 className="text-3xl font-bold my-4" {...props} />
-  ),
-  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="text-2xl font-semibold my-4" {...props} />
-  ),
-  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className="my-2 leading-relaxed" {...props} />
-  ),
-  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a className="text-blue-500 hover:underline" {...props} />
-  ),
-  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className="list-disc ml-6 my-2" {...props} />
-  ),
-  ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol className="list-decimal ml-6 my-2" {...props} />
-  ),
-  li: (props: React.LiHTMLAttributes<HTMLLIElement>) => (
-    <li className="my-1" {...props} />
-  ),
-};
+function isPromise<T>(obj: any): obj is Promise<T> {
+  return (
+    obj !== null && typeof obj === "object" && typeof obj.then === "function"
+  );
+}
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -40,18 +27,26 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: PageProps) {
-  const resolvedParams = await Promise.resolve(params);
+  const resolvedParams = isPromise<PageParams>(params) ? await params : params;
   const { slug } = resolvedParams;
 
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+
+  // Check if the file exists, if not, render notFound page.
+  try {
+    await fs.access(fullPath);
+  } catch (error) {
+    notFound();
+  }
+
   const source = await fs.readFile(fullPath, "utf8");
   const { content, data } = matter(source);
 
   return (
-    <div className="main-container">
-      <article>
-        <h1>{data.title as React.ReactNode}</h1>
-        <p>{data.date as React.ReactNode}</p>
+    <div className={styles.postContainer}>
+      <article className={styles.article}>
+        <h1 className={styles.title}>{data.title as React.ReactNode}</h1>
+        <p className={styles.date}>{data.date as React.ReactNode}</p>
         <MDXRemote
           source={content}
           options={{

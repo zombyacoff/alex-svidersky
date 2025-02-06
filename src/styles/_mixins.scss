@@ -45,3 +45,8 @@
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+@mixin background-blur {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
