@@ -1,18 +1,17 @@
 @use "colors" as colors;
-@use "variables" as variables;
-@use "mixins" as mixins;
+@use "variables" as vars;
+@use "mixins" as mixs;
 
 .postContainer {
   max-width: 780px;
-  margin: calc(variables.$header-height + 1rem) auto;
-  padding: 1rem;
+  @include mixs.double-margin(vars.$header-height);
   background-color: colors.$background;
-  min-height: calc(100vh - (variables.$header-height + 1rem));
+  min-height: calc(100vh - (vars.$header-height + 1rem));
 
-  @include mixins.mobile {
-    margin: calc(variables.$header-height-mobile + 1rem) auto;
+  @include mixs.mobile {
+    @include mixs.double-margin(vars.$header-height-mobile);
     padding: 0.75rem;
-    min-height: calc(100vh - (variables.$header-height-mobile + 1rem));
+    min-height: calc(100vh - (vars.$header-height-mobile + 1rem));
   }
 }
 

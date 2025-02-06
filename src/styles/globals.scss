@@ -1,7 +1,8 @@
 @use "typography";
+
 @use "colors" as colors;
-@use "variables" as variables;
-@use "mixins" as mixins;
+@use "variables" as vars;
+@use "mixins" as mix;
 
 @tailwind base;
 @tailwind components;
@@ -14,24 +15,20 @@ html {
 }
 
 body {
-  color: colors.$foreground;
+  color: colors.$primary;
   background-color: colors.$background;
 }
 
 .content {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: flex-start;
   margin: 0 auto;
+  box-sizing: border-box;
   min-height: 100vh;
   overflow: visible;
   padding-top: 20px;
   position: relative;
-  width: variables.$main-container-width;
+  width: vars.$main-container-width;
 
-  @include mixins.mobile {
-    padding: variables.$header-height-mobile
-      variables.$padding-horizontal-mobile 0;
+  @include mix.mobile {
+    padding: vars.$header-height-mobile vars.$padding-horizontal-mobile 0;
   }
 }

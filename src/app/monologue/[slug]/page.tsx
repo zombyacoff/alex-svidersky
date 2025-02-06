@@ -13,8 +13,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function Post({ params }) {
-  const post = getPosts().find((post) => post.slug === params.slug);
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const post = getPosts().find((post) => post.slug === slug);
 
   if (!post) {
     notFound();

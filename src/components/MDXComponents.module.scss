@@ -1,8 +1,7 @@
 @use "sass:color";
 
 @use "colors" as colors;
-@use "variables" as variables;
-@use "mixins" as mixins;
+@use "mixins" as mixs;
 
 .headingBase {
   font-family: monospace;
@@ -22,7 +21,7 @@
   color: colors.$highlight;
   position: relative;
   text-decoration: none;
-  @include mixins.transition(all);
+  @include mixs.transition(all);
 
   &::after {
     content: "";
@@ -55,7 +54,7 @@
 
 .quote {
   margin: 1.5rem 0;
-  padding: 1rem 1.5rem;
+  padding: 0.275rem 1.5rem;
   font-style: italic;
   color: colors.$secondary;
   background-color: color.adjust(colors.$background, $lightness: 4%);

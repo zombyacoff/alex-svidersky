@@ -19,7 +19,7 @@ function parseDate(dateString: string): Date {
   return new Date(year, month - 1, day);
 }
 
-export function getMDXData(directory: string): Post[] {
+function getMDXData(directory: string): Post[] {
   const files = fs.readdirSync(directory);
   return files.map((fileName) => {
     const slug = fileName.replace(/\.mdx$/, "");
@@ -49,20 +49,17 @@ export function getMDXData(directory: string): Post[] {
 }
 
 export function getPosts(): Post[] {
-  const posts = getMDXData(
-    path.join(process.cwd(), "src", "content", "monologue")
-  );
+  return getMDXData(path.join(process.cwd(), "src", "content", "monologue"));
+}
 
+export function sortPostsByTime(posts: Post[]): Post[] {
   return posts.sort((a, b) => {
-    const dateA = parseDate(a.data.date);
-    const dateB = parseDate(b.data.date);
-    return dateB.getTime() - dateA.getTime();
+    return parseDate(b.data.date).getTime() - parseDate(a.data.date).getTime();
   });
 }
 
 export function formatDate(dateString: string): string {
-  const date = parseDate(dateString);
-  return date.toLocaleDateString("ru-RU", {
+  return parseDate(dateString).toLocaleDateString("ru-RU", {
     year: "numeric",
     month: "long",
     day: "numeric",

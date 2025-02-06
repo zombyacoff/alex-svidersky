@@ -1,5 +1,5 @@
 @use "colors" as colors;
-@use "mixins" as mixins;
+@use "mixins" as mixs;
 
 .footer {
   width: 100%;
@@ -7,7 +7,7 @@
   text-align: center;
   font-size: 0.875rem;
 
-  @include mixins.mobile {
+  @include mixs.mobile {
     padding: 0.5rem;
     font-size: 0.8rem;
   }

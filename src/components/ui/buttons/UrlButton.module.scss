@@ -1,5 +1,5 @@
 @use "colors" as colors;
-@use "mixins" as mixins;
+@use "mixins" as mixs;
 
 .button {
   a {
@@ -7,7 +7,7 @@
     align-items: center;
     text-decoration: none;
     color: colors.$secondary;
-    @include mixins.transition(color, transform);
+    @include mixs.transition(color, transform);
 
     &:hover {
       color: colors.$primary;
@@ -18,7 +18,7 @@
     }
 
     svg {
-      @include mixins.transition(transform);
+      @include mixs.transition(transform);
     }
 
     span {

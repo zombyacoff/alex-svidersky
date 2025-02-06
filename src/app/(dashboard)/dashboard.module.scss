@@ -1,6 +1,6 @@
 @use "colors" as colors;
-@use "variables" as variables;
-@use "mixins" as mixins;
+@use "variables" as vars;
+@use "mixins" as mixs;
 
 @keyframes appear {
   0% {
@@ -13,18 +13,24 @@
   }
 }
 
+.centering {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .title {
   opacity: 0;
   animation: appear 1s ease both;
   will-change: opacity, transform;
-  @include mixins.hardware-acceleration();
+  @include mixs.hardware-acceleration();
 
   font-size: 4rem;
   font-weight: 700;
   font-family: "Roboto Mono", monospace;
   line-height: 1.2;
 
-  @include mixins.mobile {
+  @include mixs.mobile {
     font-size: 4rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -36,6 +42,6 @@
   display: block;
   width: fit-content;
   background-color: colors.$background;
-  padding: 0.05em variables.$padding-horizontal;
-  @include mixins.hardware-acceleration();
+  padding: 0.05em vars.$padding-horizontal;
+  @include mixs.hardware-acceleration();
 }

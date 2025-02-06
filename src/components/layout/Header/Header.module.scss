@@ -1,6 +1,6 @@
 @use "colors" as colors;
-@use "variables" as variables;
-@use "mixins" as mixins;
+@use "variables" as vars;
+@use "mixins" as mixs;
 
 .header {
   position: fixed;
@@ -8,32 +8,32 @@
   left: 0;
   width: 100%;
   z-index: 50;
-  transform: translateY(variables.$header-offset);
+  transform: translateY(vars.$header-offset);
 
   .container {
     width: 100%;
 
     .innerContainer {
-      max-width: variables.$main-container-width;
+      max-width: vars.$main-container-width;
       margin: 0 auto;
-      padding: 0 variables.$padding-horizontal;
+      padding: 0 vars.$padding-horizontal;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: variables.$header-height;
-      @include mixins.background-blur();
+      height: vars.$header-height;
+      @include mixs.background-blur();
 
       .nav {
         display: flex;
         align-items: center;
-        gap: variables.$padding-horizontal;
+        gap: vars.$padding-horizontal;
         font-size: 1rem;
 
         a {
           display: flex;
           align-items: center;
           padding: 0.5rem 0;
-          @include mixins.transition(color);
+          @include mixs.transition(color);
           color: colors.$secondary;
 
           &:hover {
@@ -47,7 +47,7 @@
           span {
             font-family: monospace;
             font-size: 1.33rem;
-            @include mixins.transition(opacity);
+            @include mixs.transition(opacity);
           }
         }
       }
@@ -61,17 +61,17 @@
     }
   }
 
-  @include mixins.mobile {
+  @include mixs.mobile {
     transform: none;
 
     .container {
       .innerContainer {
         max-width: 100%;
-        padding: 0 variables.$padding-horizontal-mobile;
-        height: variables.$header-height-mobile;
+        padding: 0 vars.$padding-horizontal-mobile;
+        height: vars.$header-height-mobile;
 
         .nav {
-          gap: variables.$padding-horizontal-mobile;
+          gap: vars.$padding-horizontal-mobile;
           font-size: 1.25rem;
         }
 

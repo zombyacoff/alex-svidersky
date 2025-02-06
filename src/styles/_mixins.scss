@@ -50,3 +50,7 @@
   background: rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
 }
+
+@mixin double-margin($value) {
+  margin: calc($value * 2) auto;
+}

@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use "mixins" as mixins;
+@use "mixins" as mixs;
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700;900&display=swap");
 
@@ -20,7 +20,7 @@ $fonts: (
 );
 
 @each $font-key, $font-info in $fonts {
-  @include mixins.font-face(
+  @include mixs.font-face(
     monospace,
     map.get($font-info, weight),
     "/fonts/#{map.get($font-info, file)}"
