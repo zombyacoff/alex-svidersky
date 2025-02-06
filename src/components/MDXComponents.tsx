@@ -32,7 +32,7 @@ const createHeadingComponent = (
 
     const headingProps = {
       id,
-      className: `${styles.headingBase} ${additionalClasses} my-4 relative ${
+      className: `${styles.headingBase} ${additionalClasses} my-6 relative ${
         !hasAnchor ? "group" : ""
       }`,
       ...rest,
@@ -63,22 +63,22 @@ export const MDXComponents = {
   h2: createHeadingComponent("h2", "text-2xl font-semibold"),
   h3: createHeadingComponent("h3", "text-xl font-medium"),
   h4: createHeadingComponent("h4", "text-lg font-medium"),
-  h5: createHeadingComponent("h5", "text-base font-medium"),
-  h6: createHeadingComponent("h6", "text-sm font-medium"),
+  h5: createHeadingComponent("h5", "font-medium"),
+  h6: createHeadingComponent("h6", "font-medium"),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className={`${styles.article} my-2 leading-relaxed`} {...props} />
+    <p className={`${styles.article} my-4 leading-relaxed`} {...props} />
   ),
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a className={styles.link} {...props} />
   ),
   ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className="list-disc ml-6 my-2" {...props} />
+    <ul className="list-disc ml-6 my-3" {...props} />
   ),
   ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol className="list-decimal ml-6 my-2" {...props} />
+    <ol className="list-decimal ml-6 my-3" {...props} />
   ),
   li: (props: React.LiHTMLAttributes<HTMLLIElement>) => (
-    <li className="my-1" {...props} />
+    <li className="my-2" {...props} />
   ),
   pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
     <pre className={styles.codeBlock} {...props} />
@@ -87,7 +87,7 @@ export const MDXComponents = {
     <code className={styles.inlineCode} {...props} />
   ),
   blockquote: (props: React.HTMLAttributes<HTMLElement>) => (
-    <blockquote className={`${styles.quote} my-4`} {...props} />
+    <blockquote className={`${styles.quote} my-6`} {...props} />
   ),
   hr: (props: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className={styles.border} {...props} />
