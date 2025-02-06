@@ -10,38 +10,32 @@ import { MDXComponents } from "@/components/MDX/MDXComponents";
 import styles from "./post.module.scss";
 import { notFound } from "next/navigation";
 
-type PageParams = { slug: string };
-type PageProps = {
-  params: Promise<PageParams> | PageParams;
-};
-
-function isPromise<T>(obj: any): obj is Promise<T> {
-  return (
-    obj !== null && typeof obj === "object" && typeof obj.then === "function"
-  );
-}
-
+// This function pre-generates static params for dynamic routes.
 export async function generateStaticParams() {
   const posts = await getAllPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export default async function Post({ params }: PageProps) {
-  const resolvedParams = isPromise<PageParams>(params) ? await params : params;
-  const { slug } = resolvedParams;
-
+// Updated Post component with inline type annotation for props and explicit return type.
+export default async function Post({
+  params: { slug },
+}: {
+  params: { slug: string };
+}): Promise<React.ReactElement> {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
 
-  // Check if the file exists, if not, render notFound page.
+  // Check if the file exists; if not, trigger a notFound response.
   try {
     await fs.access(fullPath);
   } catch (error) {
     notFound();
   }
 
+  // Read the MDX file and parse the front matter.
   const source = await fs.readFile(fullPath, "utf8");
   const { content, data } = matter(source);
 
+  // Render the post using MDXRemote with a custom MDXComponents set.
   return (
     <div className={styles.postContainer}>
       <article className={styles.article}>

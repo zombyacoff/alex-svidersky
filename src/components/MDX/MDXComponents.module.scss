@@ -63,21 +63,24 @@
   position: relative;
 }
 
-:global(hr) {
-  border: none;
-  border-top: 1px solid colors.$max-secondary;
-  margin: 1.5rem 0;
-}
+/* Wrap global elements inside a local container (e.g., .root) */
+.root {
+  :global(hr) {
+    border: none;
+    border-top: 1px solid colors.$max-secondary;
+    margin: 1.5rem 0;
+  }
 
-:global(table) {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-}
+  :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
 
-:global(th),
-:global(td) {
-  border: 1px solid colors.$max-secondary;
-  padding: 0.75rem;
-  text-align: left;
+  :global(th),
+  :global(td) {
+    border: 1px solid colors.$max-secondary;
+    padding: 0.75rem;
+    text-align: left;
+  }
 }
