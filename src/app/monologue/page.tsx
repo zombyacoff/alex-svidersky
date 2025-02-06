@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { getAllPosts } from "@/lib/mdx";
+import { getPosts } from "@/lib/mdxUtils";
 import styles from "./monologue.module.scss";
 
-export default async function Monologue() {
-  const posts = await getAllPosts();
-  // posts.map((post) => console.log(post.slug));
+export default function Monologue() {
+  const posts = getPosts();
+
   return (
-    <div className="main-container">
+    <div className="content">
       <ul className={styles.postList}>
         {posts.map((post) => (
           <li key={post.slug}>
             <Link href={`/monologue/${post.slug}`}>
-              {post.title} <span>({post.date})</span>
+              {post.metadata.title} <span>({post.metadata.date})</span>
             </Link>
           </li>
         ))}

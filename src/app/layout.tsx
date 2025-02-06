@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.scss";
+import styles from "./layout.module.scss";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -14,17 +15,15 @@ const inter = Inter({
   display: "swap",
 });
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html className={`${inter.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <div className={styles.container}>
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

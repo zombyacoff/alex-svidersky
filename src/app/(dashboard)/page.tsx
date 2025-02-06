@@ -9,13 +9,13 @@ function titleSpan(text: string) {
 export default function Dashboard() {
   return (
     <div>
-      <div className="main-container">
-        {/* <h1 className={styles.title}>
+      <Background />
+      <div className="content">
+        <h1 className={styles.title}>
           {titleSpan("alex svidersky's")}
           {titleSpan("website")}
-        </h1> */}
+        </h1>
       </div>
-      <Background />
     </div>
   );
 }

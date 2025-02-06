@@ -1,5 +1,4 @@
 @use "typography";
-
 @use "colors" as colors;
 @use "variables" as variables;
 @use "mixins" as mixins;
@@ -19,21 +18,39 @@ body {
   background-color: colors.$background;
 }
 
-.main-container {
+.content {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow: visible;
+  padding-top: 20px;
   position: relative;
   width: variables.$main-container-width;
-  margin: -20px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  box-sizing: border-box;
-  overflow: visible;
 
   @include mixins.mobile {
     padding: variables.$header-height-mobile
       variables.$padding-horizontal-mobile 0;
-    margin-top: 0;
-    justify-content: flex-start;
   }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #{colors.$max-secondary};
+  margin: 1.5rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+th,
+td {
+  border: 1px solid #{colors.$max-secondary};
+  padding: 0.75rem;
+  text-align: left;
 }

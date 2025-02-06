@@ -1,28 +1,47 @@
 @use "colors" as colors;
 @use "mixins" as mixins;
 
+.header {
+  width: 100%;
+  padding: 1rem;
+  background-color: colors.$primary;
+  color: white;
+  text-align: center;
+
+  @include mixins.mobile {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+.content {
+  padding: 1rem;
+
+  @include mixins.mobile {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
 .footer {
   width: 100%;
   padding: 1rem;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: auto;
+
   @include mixins.background-blur();
 
   @include mixins.mobile {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
-}
 
-.copy {
-  color: colors.$secondary;
-  font-size: 0.875rem;
-  line-height: 1.4;
+  .copy {
+    color: colors.$secondary;
+    font-size: 0.875rem;
+    line-height: 1.4;
 
-  small {
-    font-size: inherit;
+    small {
+      font-size: inherit;
+    }
   }
 }

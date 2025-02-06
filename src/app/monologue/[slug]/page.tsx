@@ -1,51 +1,33 @@
-import { promises as fs } from "fs";
-import path from "path";
-import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { postsDirectory } from "@/lib/constants";
-import { getAllPosts } from "@/lib/mdx";
-import remarkGfm from "remark-gfm";
-import React from "react";
-import { MDXComponents } from "@/components/MDX/MDXComponents";
-import styles from "./post.module.scss";
-import { notFound } from "next/navigation";
+import { getPosts } from "@/lib/mdxUtils";
+import { MDXComponents } from "@/components/MDXComponents";
+import styles from "./slug.module.scss";
+import { getHumanReadableDate } from "@/lib/getHumanReadableDate";
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return getPosts().map((post) => ({
+    slug: post.slug,
+  }));
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+export default function Post({ params }) {
+  const slug = decodeURIComponent(params.slug);
+  const post = getPosts().find((post) => post.slug === slug);
 
-  try {
-    await fs.access(fullPath);
-  } catch (error) {
-    notFound();
+  if (!post) {
+    return null;
   }
-
-  const source = await fs.readFile(fullPath, "utf8");
-  const { content, data } = matter(source);
 
   return (
     <div className={styles.postContainer}>
       <article className={styles.article}>
-        <h1 className={styles.title}>{data.title as React.ReactNode}</h1>
-        <p className={styles.date}>{data.date as React.ReactNode}</p>
-        <MDXRemote
-          source={content}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
-            },
-          }}
-          components={MDXComponents}
-        />
+        <h1 className={styles.title}>{post.metadata.title}</h1>
+        <p className={styles.date}>
+          {getHumanReadableDate(post.metadata.date)}
+        </p>
+        <MDXRemote source={post.content} components={MDXComponents} />
       </article>
     </div>
   );

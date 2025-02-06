@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Footer.module.scss";
 import { UrlButton } from "@/components/ui/buttons/UrlButton";
 
-export const Footer: React.FC = () => {
+export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (

@@ -4,8 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UrlButton } from "@/components/ui/buttons/UrlButton";
-import { PROFILE_URLS, NAV_LINKS } from "@/lib/constants";
+import { PROFILE_URLS } from "@/lib/constants";
 import styles from "./Header.module.scss";
+
+export const NAV_LINKS = [
+  { href: "/", name: "home" },
+  { href: "/monologue", name: "monologue" },
+];
 
 interface NavLink {
   href: string;
@@ -27,7 +32,7 @@ const NavLinkComponent = ({ href, name }: NavLink) => {
   );
 };
 
-export const Header: React.FC = () => {
+export const Header = () => {
   const arrowSize = 16;
 
   return (
