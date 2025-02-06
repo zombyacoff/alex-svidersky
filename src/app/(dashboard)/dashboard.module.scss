@@ -21,7 +21,7 @@
 
   font-size: 4rem;
   font-weight: 700;
-  font-family: "Roboto Mono";
+  font-family: "Roboto Mono", monospace;
   line-height: 1.2;
 
   @include mixins.mobile {
