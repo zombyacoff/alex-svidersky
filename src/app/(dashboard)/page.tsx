@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./dashboard.module.scss";
+import styles from "./home.module.scss";
 import { Background } from "@/components/ui/AnimatedBackground";
 
 function titleSpan(text: string) {

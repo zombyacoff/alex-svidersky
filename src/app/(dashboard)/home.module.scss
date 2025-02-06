@@ -36,5 +36,5 @@
   display: block;
   width: fit-content;
   background-color: colors.$background;
-  padding: 0.05em #{variables.$padding-horizontal};
+  padding: 0.05em variables.$padding-horizontal;
 }
