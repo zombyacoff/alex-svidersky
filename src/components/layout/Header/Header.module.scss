@@ -27,6 +27,7 @@
         display: flex;
         align-items: center;
         gap: variables.$padding-horizontal;
+        font-size: 1rem;
 
         a {
           display: flex;
@@ -55,6 +56,7 @@
         display: flex;
         align-items: center;
         gap: 1.25rem;
+        font-size: 1rem;
       }
     }
   }
@@ -70,22 +72,11 @@
 
         .nav {
           gap: variables.$padding-horizontal-mobile;
-
-          a {
-            span {
-              font-size: 1.25rem;
-            }
-          }
+          font-size: 1.25rem;
         }
 
         .socialLinks {
           gap: 0.75rem;
-
-          a {
-            span {
-              font-size: 0.875rem;
-            }
-          }
         }
       }
     }

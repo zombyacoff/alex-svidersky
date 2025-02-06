@@ -15,7 +15,5 @@ const months = [
 
 export function getHumanReadableDate(dateStr: string): string {
   const [dayStr, monthStr, year] = dateStr.split("-");
-  return `${parseInt(dayStr, 10)} ${
-    months[parseInt(monthStr, 10) - 1]
-  }, ${year}`;
+  return `${parseInt(dayStr)} ${months[parseInt(monthStr) - 1]}, ${year}`;
 }

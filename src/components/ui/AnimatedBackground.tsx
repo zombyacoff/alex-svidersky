@@ -23,8 +23,10 @@ export const Background: React.FC = () => {
     let { width, height } = getDimensions();
 
     const scene = new THREE.Scene();
+
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 20;
+    camera.position.set(0, 0, 20);
+
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(1);
     renderer.setSize(width, height);
@@ -74,6 +76,7 @@ export const Background: React.FC = () => {
 
     const startTime = performance.now();
     let reqId: number;
+
     const animate = () => {
       const elapsed = (performance.now() - startTime) / 1000;
 
@@ -84,7 +87,6 @@ export const Background: React.FC = () => {
       const positions = geometry.attributes.position.array as Float32Array;
       const waveAmplitude = 0.5;
       const waveFrequency = 2;
-
       for (let i = 0; i < positions.length; i += 3) {
         positions[i] = originalPositions[i];
         positions[i + 1] = originalPositions[i + 1];
@@ -98,6 +100,12 @@ export const Background: React.FC = () => {
           Math.cos(elapsed * waveFrequency + originalPositions[i + 1]);
       }
       geometry.attributes.position.needsUpdate = true;
+
+      const radius = 20;
+      const speed = 0.2;
+      camera.position.x = Math.sin(elapsed * speed) * radius;
+      camera.position.z = Math.cos(elapsed * speed) * radius;
+      camera.lookAt(new THREE.Vector3(0, 0, 0));
 
       renderer.render(scene, camera);
       if (effectVisible) {
@@ -139,5 +147,5 @@ export const Background: React.FC = () => {
     };
   }, []);
 
-  return <div ref={mountRef} className={styles.container} />;
+  return <div ref={mountRef} className={styles.animationContainer} />;
 };

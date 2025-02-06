@@ -7,10 +7,12 @@
   margin: calc(variables.$header-height + 1rem) auto;
   padding: 1rem;
   background-color: colors.$background;
+  min-height: calc(100vh - (variables.$header-height + 1rem));
 
   @include mixins.mobile {
     margin: calc(variables.$header-height-mobile + 1rem) auto;
     padding: 0.75rem;
+    min-height: calc(100vh - (variables.$header-height-mobile + 1rem));
   }
 }
 
@@ -24,7 +26,7 @@
 }
 
 .date {
-  font-size: 0.855rem;
+  font-size: 0.9285rem;
   font-family: monospace;
   color: colors.$secondary;
 }

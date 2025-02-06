@@ -35,22 +35,3 @@ body {
       variables.$padding-horizontal-mobile 0;
   }
 }
-
-hr {
-  border: none;
-  border-top: 1px solid #{colors.$max-secondary};
-  margin: 1.5rem 0;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-}
-
-th,
-td {
-  border: 1px solid #{colors.$max-secondary};
-  padding: 0.75rem;
-  text-align: left;
-}

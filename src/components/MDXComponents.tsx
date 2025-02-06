@@ -89,4 +89,18 @@ export const MDXComponents = {
   blockquote: (props: React.HTMLAttributes<HTMLElement>) => (
     <blockquote className={`${styles.quote} my-4`} {...props} />
   ),
+  hr: (props: React.HTMLAttributes<HTMLHRElement>) => (
+    <hr className={styles.border} {...props} />
+  ),
+  table: (props: React.TableHTMLAttributes<HTMLTableElement>) => (
+    <div className={styles.tableWrapper}>
+      <table className={styles.table} {...props} />
+    </div>
+  ),
+  th: (props: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => (
+    <th className={styles.tableCell} {...props} />
+  ),
+  td: (props: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (
+    <td className={styles.tableCell} {...props} />
+  ),
 };

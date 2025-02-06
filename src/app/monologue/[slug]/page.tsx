@@ -3,9 +3,10 @@ import { getPosts } from "@/lib/mdxUtils";
 import { MDXComponents } from "@/components/MDXComponents";
 import styles from "./slug.module.scss";
 import { getHumanReadableDate } from "@/lib/getHumanReadableDate";
+import remarkGfm from "remark-gfm";
+import { notFound } from "next/navigation";
 
 export const dynamicParams = false;
-
 export async function generateStaticParams() {
   return getPosts().map((post) => ({
     slug: post.slug,
@@ -13,11 +14,10 @@ export async function generateStaticParams() {
 }
 
 export default function Post({ params }) {
-  const slug = decodeURIComponent(params.slug);
-  const post = getPosts().find((post) => post.slug === slug);
+  const post = getPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
-    return null;
+    notFound();
   }
 
   return (
@@ -27,7 +27,15 @@ export default function Post({ params }) {
         <p className={styles.date}>
           {getHumanReadableDate(post.metadata.date)}
         </p>
-        <MDXRemote source={post.content} components={MDXComponents} />
+        <MDXRemote
+          source={post.content}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+            },
+          }}
+          components={MDXComponents}
+        />
       </article>
     </div>
   );
