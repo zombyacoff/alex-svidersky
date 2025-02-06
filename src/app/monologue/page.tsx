@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPosts } from "@/lib/mdxUtils";
+import { getPosts, formatDate } from "@/lib/mdxUtils";
 import styles from "./monologue.module.scss";
 
 export default function Monologue() {
@@ -11,7 +11,7 @@ export default function Monologue() {
         {posts.map((post) => (
           <li key={post.slug}>
             <Link href={`/monologue/${post.slug}`}>
-              {post.metadata.title} <span>({post.metadata.date})</span>
+              {post.data.title} <span>({formatDate(post.data.date)})</span>
             </Link>
           </li>
         ))}
