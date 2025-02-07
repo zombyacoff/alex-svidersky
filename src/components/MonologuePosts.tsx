@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPosts, formatDate, sortPostsByTime } from "@/lib/mdxUtils";
+import { getPosts, formatDate, sortPostsByDate } from "@/lib/mdxUtils";
 import styles from "./MonologuePosts.module.scss";
 
 interface MonologuePostsProps {
@@ -7,7 +7,7 @@ interface MonologuePostsProps {
 }
 
 export const MonologuePosts: React.FC<MonologuePostsProps> = ({ limit }) => {
-  const posts = sortPostsByTime(getPosts());
+  const posts = sortPostsByDate(getPosts());
   const displayedPosts = limit ? posts.slice(0, limit) : posts;
 
   return (

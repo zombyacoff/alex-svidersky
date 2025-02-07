@@ -7,11 +7,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerButtons}>
-        <UrlButton
-          url={PROFILE_URLS.repository}
-          text="view source"
-          arrowSize={16}
-        />
+        <UrlButton url={PROFILE_URLS.repository} text="view source" />
       </div>
       <p className={styles.copy}>© {new Date().getFullYear()} MIT Licensed</p>
     </footer>

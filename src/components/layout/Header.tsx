@@ -7,7 +7,7 @@ import { UrlButton } from "@/components/ui/buttons/UrlButton";
 import { PROFILE_URLS } from "@/lib/constants";
 import styles from "./Header.module.scss";
 
-export const NAV_LINKS = [
+const NAV_LINKS = [
   { href: "/", name: "home" },
   { href: "/monologue", name: "monologue" },
 ];
@@ -18,14 +18,12 @@ interface NavLink {
 }
 
 const NavLinkComponent = ({ href, name }: NavLink) => {
-  const isActive = usePathname() === href;
-
   return (
     <Link
       href={href}
-      className={`${styles.navLink} ${isActive ? styles.active : ""} ${
-        styles.navLinkHover
-      }`}
+      className={`${styles.navLink} ${
+        usePathname() === href ? styles.active : ""
+      } ${styles.navLinkHover}`}
     >
       <span>{name}</span>
     </Link>
@@ -33,8 +31,6 @@ const NavLinkComponent = ({ href, name }: NavLink) => {
 };
 
 export const Header = () => {
-  const arrowSize = 16;
-
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -47,16 +43,8 @@ export const Header = () => {
             </nav>
           </div>
           <div className={styles.socialLinks}>
-            <UrlButton
-              url={PROFILE_URLS.steam}
-              text="steam"
-              arrowSize={arrowSize}
-            />
-            <UrlButton
-              url={PROFILE_URLS.github}
-              text="github"
-              arrowSize={arrowSize}
-            />
+            <UrlButton url={PROFILE_URLS.steam} text="steam" />
+            <UrlButton url={PROFILE_URLS.github} text="github" />
           </div>
         </div>
       </div>

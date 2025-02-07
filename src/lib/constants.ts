@@ -1,6 +1,6 @@
-const GITHUB_BASE = "https://github.com/zombyacoff";
+const githubBase = "https://github.com/zombyacoff";
 export const PROFILE_URLS = {
-  github: GITHUB_BASE,
-  repository: `${GITHUB_BASE}/alex-svidersky`,
+  github: githubBase,
+  repository: `${githubBase}/alex-svidersky`,
   steam: "https://steamcommunity.com/id/zombyacoff",
 };

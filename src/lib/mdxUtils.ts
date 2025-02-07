@@ -9,9 +9,9 @@ interface PostData {
 }
 
 interface Post {
-  content: string;
-  data: PostData;
   slug: string;
+  data: PostData;
+  content: string;
 }
 
 function parseDate(dateString: string): Date {
@@ -23,11 +23,9 @@ function getMDXData(directory: string): Post[] {
   const files = fs.readdirSync(directory);
   return files.map((fileName) => {
     const slug = fileName.replace(/\.mdx$/, "");
-    const fileContents = fs.readFileSync(
-      path.join(directory, fileName),
-      "utf8"
+    const { data, content } = matter(
+      fs.readFileSync(path.join(directory, fileName), "utf8")
     );
-    const { data, content } = matter(fileContents);
 
     if (!data.date || !data.title) {
       throw new Error(`Missing required fields in ${fileName}`);
@@ -41,9 +39,9 @@ function getMDXData(directory: string): Post[] {
     }
 
     return {
-      content,
-      data: data as PostData,
       slug,
+      data: data as PostData,
+      content,
     };
   });
 }
@@ -52,7 +50,7 @@ export function getPosts(): Post[] {
   return getMDXData(path.join(process.cwd(), "src", "content", "monologue"));
 }
 
-export function sortPostsByTime(posts: Post[]): Post[] {
+export function sortPostsByDate(posts: Post[]): Post[] {
   return posts.sort((a, b) => {
     return parseDate(b.data.date).getTime() - parseDate(a.data.date).getTime();
   });

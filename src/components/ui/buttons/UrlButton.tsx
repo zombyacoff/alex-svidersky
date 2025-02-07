@@ -11,7 +11,7 @@ interface UrlButtonProps {
 export const UrlButton: React.FC<UrlButtonProps> = ({
   url,
   text,
-  arrowSize = 20,
+  arrowSize = 16,
 }) => {
   return (
     <div className={styles.button}>

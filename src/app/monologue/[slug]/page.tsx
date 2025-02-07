@@ -1,7 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getPosts, formatDate } from "@/lib/mdxUtils";
 import { MDXComponents } from "@/components/MDXComponents";
-import styles from "./slug.module.scss";
+import styles from "./post.module.scss";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }) {
+export default async function Post({ params }) {
   const { slug } = await params;
   const post = getPosts().find((post) => post.slug === slug);
 

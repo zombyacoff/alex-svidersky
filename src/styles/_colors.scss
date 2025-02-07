@@ -1,9 +1,14 @@
 @use "sass:color";
 
+// $background: #0a0a0a;
+// $highlight:  #9ddbdb;
+// $primary:    #f0ffff;
+// $secondary:  #788080;
+
 $background: #0a0a0a;
-$highlight:  #9ddbdb;
-$primary:    #f0ffff;
-$secondary:  #788080;
+$highlight:  #90955c;
+$primary:    #f4e5cc;
+$secondary:  #8e8c89;
 
 $background-light: $primary;
 $max-secondary:    color.adjust($secondary, $lightness: -30%);
